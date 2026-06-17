@@ -1,0 +1,1740 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --bg-base: #070913;
+    --bg-surface: rgba(13, 17, 33, 0.75);
+    --bg-card: rgba(20, 26, 48, 0.6);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(0, 240, 255, 0.3);
+    
+    --color-primary: #00f0ff;      /* Cyan (AI/Gemini) */
+    --color-secondary: #9333ea;    /* Purple (Obsidian) */
+    --color-accent: #3b82f6;       /* Blue (Gov/Corporate) */
+    --color-success: #10b981;      /* Green (Secure/Zero Error) */
+    --color-danger: #f43f5e;       /* Red (Problem/Hallucination) */
+    
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    
+    --shadow-cyan: 0 0 15px rgba(0, 240, 255, 0.25);
+    --shadow-purple: 0 0 15px rgba(147, 51, 234, 0.25);
+    --shadow-green: 0 0 15px rgba(16, 185, 129, 0.25);
+    
+    --font-heading: 'Outfit', 'Noto Sans Thai', sans-serif;
+    --font-body: 'Noto Sans Thai', 'Outfit', sans-serif;
+    
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-fast: all 0.2s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-base);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(147, 51, 234, 0.06) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+}
+
+/* App Layout */
+.app-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 280px;
+    background: rgba(8, 10, 22, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    z-index: 10;
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 24px 8px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 24px;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-cyan);
+    font-weight: 800;
+    color: #fff;
+    font-size: 1.2rem;
+    font-family: var(--font-heading);
+}
+
+.logo-text h1 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    letter-spacing: 0.5px;
+    background: linear-gradient(to right, #ffffff, #9ca3af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-text span {
+    font-size: 0.7rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 4px;
+}
+
+.nav-menu::-webkit-scrollbar {
+    width: 4px;
+}
+.nav-menu::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition-fast);
+    border: 1px solid transparent;
+}
+
+.nav-item:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.nav-item.active {
+    color: var(--color-primary);
+    background: rgba(0, 240, 255, 0.06);
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+}
+
+.nav-item .slide-num {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--text-muted);
+    min-width: 24px;
+    text-align: center;
+}
+
+.nav-item.active .slide-num {
+    background: rgba(0, 240, 255, 0.15);
+    color: var(--color-primary);
+}
+
+.sidebar-footer {
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Slide Container */
+.slides-viewport {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    padding: 40px;
+}
+
+.slide {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    right: 40px;
+    bottom: 80px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.98);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    z-index: 2;
+}
+
+/* Slide Styles */
+.slide-header {
+    margin-bottom: 24px;
+}
+
+.slide-category {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.slide-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff 30%, #e2e8f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.slide-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow-y: auto;
+    padding-top: 10px;
+    padding-right: 8px;
+}
+
+.slide-body::-webkit-scrollbar {
+    width: 6px;
+}
+.slide-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Glass Card Component */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+    transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.05);
+}
+
+/* Interactive Floating Controls */
+.controls-bar {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    right: 40px;
+    height: 60px;
+    background: rgba(13, 17, 33, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 10;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.control-btn:hover {
+    background: rgba(0, 240, 255, 0.1);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-cyan);
+}
+
+.control-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background: transparent;
+    border-color: var(--border-color);
+    color: var(--text-muted);
+    box-shadow: none;
+}
+
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.progress-track {
+    width: 250px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 10%;
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.slide-counter {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.control-group-right {
+    display: flex;
+    gap: 12px;
+}
+
+/* Slide 1 - Title slide layout */
+.title-slide-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    width: 100%;
+    align-items: center;
+}
+
+.title-slide-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.kpis-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    background: rgba(0, 240, 255, 0.04);
+    padding: 6px 12px;
+    border-radius: 20px;
+    align-self: flex-start;
+}
+
+.main-title {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    background: linear-gradient(to right, #ffffff, #c7d2fe, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle-thai {
+    font-size: 1.4rem;
+    color: #e2e8f0;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.subtitle-eng {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.presenter-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    transition: var(--transition-smooth);
+}
+
+.presenter-card:hover {
+    border-color: var(--border-hover);
+    background: rgba(0, 240, 255, 0.02);
+}
+
+.presenter-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.presenter-info h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.presenter-info p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.title-slide-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.title-brain-img {
+    width: 90%;
+    max-width: 420px;
+    filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.15));
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+/* Slide 2 - Concept Pillars Grid */
+.concept-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.concept-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+}
+
+.concept-icon-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    transition: var(--transition-fast);
+}
+
+.concept-card:hover .concept-icon-wrap {
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-cyan);
+}
+
+.concept-card:nth-child(2):hover .concept-icon-wrap {
+    color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    box-shadow: var(--shadow-purple);
+    background: rgba(147, 51, 234, 0.1);
+}
+
+.concept-card:nth-child(3):hover .concept-icon-wrap {
+    color: var(--color-success);
+    border-color: var(--color-success);
+    box-shadow: var(--shadow-green);
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.concept-card h3 {
+    font-size: 1.3rem;
+    font-family: var(--font-heading);
+    color: #ffffff;
+}
+
+.concept-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.concept-logos {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.logo-thumb {
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Slide 3 - Interactive Agenda */
+.agenda-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.agenda-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.agenda-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 8px 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.agenda-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: var(--text-muted);
+}
+
+.agenda-info h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: var(--transition-fast);
+}
+
+.agenda-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.agenda-item:hover {
+    background: rgba(0, 240, 255, 0.03);
+    border-color: var(--color-primary);
+    transform: translateX(8px);
+}
+
+.agenda-item:hover .agenda-num {
+    color: var(--color-primary);
+}
+
+.agenda-preview-panel {
+    height: 320px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    background: radial-gradient(circle at center, rgba(13, 17, 33, 0.9), rgba(7, 9, 19, 0.95));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.agenda-preview-content {
+    text-align: center;
+    z-index: 2;
+    transition: var(--transition-smooth);
+}
+
+.agenda-preview-icon {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+    animation: float 4s ease-in-out infinite;
+}
+
+.agenda-preview-title {
+    font-size: 1.3rem;
+    font-family: var(--font-heading);
+    margin-bottom: 8px;
+    color: white;
+}
+
+.agenda-preview-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 280px;
+}
+
+/* Slide 4 - Problem Analysis */
+.problem-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    width: 100%;
+    align-items: center;
+}
+
+.problem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.problem-item {
+    padding: 20px;
+    border-radius: 14px;
+    background: rgba(244, 63, 94, 0.02);
+    border: 1px solid rgba(244, 63, 94, 0.08);
+    transition: var(--transition-smooth);
+}
+
+.problem-item:hover {
+    border-color: rgba(244, 63, 94, 0.3);
+    background: rgba(244, 63, 94, 0.04);
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.05);
+}
+
+.problem-header-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.problem-icon {
+    font-size: 1.2rem;
+    color: var(--color-danger);
+}
+
+.problem-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.problem-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.problem-illustration-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    position: relative;
+    height: 380px;
+}
+
+.problem-illustration-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85) contrast(1.1);
+    transition: var(--transition-smooth);
+}
+
+.problem-illustration-wrap:hover .problem-illustration-img {
+    scale: 1.03;
+}
+
+.impact-badge-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(13, 17, 33, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.impact-badge {
+    text-align: center;
+}
+
+.impact-badge .label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.impact-badge .val {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-danger);
+    margin-top: 2px;
+}
+
+/* Slide 5 - Stepper Timeline */
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+}
+
+.stepper-nav {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.stepper-line {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.08);
+    z-index: 1;
+}
+
+.stepper-line-progress {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    z-index: 2;
+    transition: width 0.4s ease;
+}
+
+.step-node {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 60px;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-base);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: var(--transition-fast);
+}
+
+.step-node:hover .step-circle {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+}
+
+.step-node.active .step-circle {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-color: transparent;
+    color: white;
+    box-shadow: var(--shadow-cyan);
+}
+
+.step-node.completed .step-circle {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.step-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 8px;
+    white-space: nowrap;
+    transition: var(--transition-fast);
+}
+
+.step-node.active .step-title {
+    color: var(--color-primary);
+}
+
+.step-detail-card {
+    min-height: 200px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.step-info h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.step-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.step-graphic {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #e2e8f0;
+    overflow-x: auto;
+    max-height: 160px;
+}
+
+/* Slide 6 - Node Graph Comparison */
+.graph-slide-container {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 40px;
+    width: 100%;
+    height: 100%;
+    align-items: stretch;
+}
+
+.graph-canvas-area {
+    position: relative;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    background: rgba(5, 7, 15, 0.9);
+    overflow: hidden;
+    height: 420px;
+}
+
+.graph-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.graph-overlay-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    background: rgba(13, 17, 33, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 30px;
+    z-index: 5;
+}
+
+.graph-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.graph-toggle-btn:hover {
+    border-color: var(--color-primary);
+    background: rgba(0, 240, 255, 0.05);
+}
+
+.graph-toggle-btn.active {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-color: transparent;
+    color: white;
+    box-shadow: var(--shadow-cyan);
+}
+
+.graph-detail-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+}
+
+.graph-detail-title {
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.graph-detail-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.graph-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+/* Slide 7 - Outputs & Stats */
+.stats-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 12px 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-val {
+    font-size: 2.8rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    background: linear-gradient(to bottom, #ffffff, #c7d2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.stat-card:nth-child(1) .stat-val {
+    background: linear-gradient(to bottom, #ffffff, var(--color-primary));
+    -webkit-background-clip: text;
+}
+.stat-card:nth-child(2) .stat-val {
+    background: linear-gradient(to bottom, #ffffff, var(--color-secondary));
+    -webkit-background-clip: text;
+}
+.stat-card:nth-child(3) .stat-val {
+    background: linear-gradient(to bottom, #ffffff, var(--color-success));
+    -webkit-background-clip: text;
+}
+.stat-card:nth-child(4) .stat-val {
+    background: linear-gradient(to bottom, #ffffff, var(--color-accent));
+    -webkit-background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.stat-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.kpi-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.kpi-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+.kpi-table th {
+    padding: 8px 16px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.kpi-table td {
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.kpi-table tr:hover td {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.kpi-progress-bar-wrap {
+    width: 120px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.kpi-progress-bar {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 3px;
+}
+
+/* Slide 8 - Chat Simulator */
+.chat-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    width: 100%;
+    align-items: stretch;
+}
+
+.chat-console {
+    background: #090c15;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 340px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.console-header {
+    background: #111524;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.console-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.console-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.console-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.console-dot.red { background: #ef4444; }
+.console-dot.yellow { background: #f59e0b; }
+.console-dot.green { background: #10b981; }
+
+.chat-history {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+        height: 100%; 
+    justify-content: flex-start;
+}
+
+.chat-history::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-history::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.chat-msg {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+        height: auto;
+        word-break: break-word;
+        white-space: pre-wrap;
+}
+
+.chat-msg.user {
+    align-self: flex-end;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: white;
+    border-bottom-right-radius: 2px;
+}
+
+.chat-msg.ai {
+    align-self: flex-start;
+    background: rgba(0, 240, 255, 0.03);
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    color: #e2e8f0;
+    border-bottom-left-radius: 2px;
+}
+
+.chat-msg.ai pre {
+    background: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    margin: 8px 0;
+    overflow-x: auto;
+}
+
+.chat-msg.ai .reference {
+    display: block;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.75rem;
+    color: var(--color-primary);
+}
+
+.chat-input-area {
+    padding: 14px;
+    background: #0f1322;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 10px;
+}
+
+.chat-dummy-input {
+    flex-grow: 1;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+}
+
+.chat-send-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    border: none;
+    border-radius: 8px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.cases-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+}
+
+.case-card {
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.case-card:hover, .case-card.active {
+    border-color: var(--color-primary);
+    background: rgba(0, 240, 255, 0.03);
+}
+
+.case-card.active {
+    box-shadow: var(--shadow-cyan);
+}
+
+.case-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.case-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--text-muted);
+}
+
+.case-card.active .case-badge {
+    background: rgba(0,240,255,0.15);
+    color: var(--color-primary);
+}
+
+.case-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+}
+
+.case-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* Slide 9 - Sustainability & Roadmap */
+.sustain-layout {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 40px;
+    width: 100%;
+}
+
+.sustain-pillar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sustain-pillar {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.sustain-pillar-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    color: var(--color-success);
+    flex-shrink: 0;
+}
+
+.sustain-pillar-info h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: white;
+}
+
+.sustain-pillar-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.roadmap-timeline {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 24px;
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    bottom: 5px;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.roadmap-node {
+    position: relative;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+
+.roadmap-node:last-child {
+    padding-bottom: 0;
+}
+
+.roadmap-marker {
+    position: absolute;
+    left: -24px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bg-base);
+    border: 2px solid var(--border-color);
+    transition: var(--transition-fast);
+}
+
+.roadmap-node:hover .roadmap-marker,
+.roadmap-node.active .roadmap-marker {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    box-shadow: var(--shadow-cyan);
+    transform: scale(1.2);
+}
+
+.roadmap-phase {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.roadmap-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: white;
+    margin-top: 2px;
+}
+
+.roadmap-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    line-height: 1.4;
+    display: none;
+}
+
+.roadmap-node.active .roadmap-desc {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide 10 - Summary slide */
+.summary-container {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 40px;
+    width: 100%;
+    align-items: center;
+}
+
+.summary-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.summary-bullet {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    transition: var(--transition-smooth);
+}
+
+.summary-bullet:hover {
+    border-color: var(--color-primary);
+    background: rgba(0, 240, 255, 0.02);
+}
+
+.summary-bullet-icon {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.summary-bullet-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.summary-credits {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.thank-you-text {
+    font-size: 3rem;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.credits-card {
+    padding: 24px;
+    border-radius: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 340px;
+}
+
+.credits-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.credits-dept {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.credits-org {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-top: 6px;
+}
+
+/* Typing indicator for simulated chat */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 4px 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Modal details / Fullscreen styles */
+.present-mode-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.present-mode-btn:hover {
+    background: var(--color-primary);
+    color: black;
+    border-color: var(--color-primary);
+}
+
+/* Custom CSS nodes graph in Slide 6 when not canvas */
+.graph-help-tooltip {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(13, 17, 33, 0.9);
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+/* Slide transition overlay */
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-base);
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.slide-overlay.active {
+    opacity: 1;
+}
+
+/* Responsive fixes */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 80px;
+        padding: 24px 8px;
+    }
+    .logo-text, .sidebar-footer, .nav-item span {
+        display: none;
+    }
+    .nav-item {
+        justify-content: center;
+    }
+    .title-slide-container,
+    .agenda-layout,
+    .problem-layout,
+    .graph-slide-container,
+    .chat-layout,
+    .sustain-layout,
+    .summary-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        overflow-y: auto;
+    }
+    .title-slide-right {
+        order: -1;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .slide {
+        bottom: 120px;
+    }
+    .controls-bar {
+        bottom: 20px;
+    }
+}
+/* บังคับล้างค่าจัดกึ่งกลางแนวตั้งเฉพาะสไลด์ที่ 7 (หน้าตาราง KPI) */
+.slide:nth-child(7),
+.slide:nth-child(7) .slide-body {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important; /* สั่งให้เริ่มเรียงจากด้านบนลงมา */
+    align-items: stretch !important;
+    height: 100% !important;
+}
+
+/* ปรับระยะห่างระหว่างหัวข้อสไลด์กับกล่องสี่เหลี่ยมด้านบน */
+.slide:nth-child(7) .slide-header {
+    margin-bottom: 16px !important; /* ลดระยะขอบล่างของหัวข้อลงเล็กน้อย */
+}
+
+/* จัดการความหนาของกล่องสี่เหลี่ยมด้านบนให้กระชับขึ้น */
+.slide:nth-child(7) .stat-card {
+    padding: 10px 14px !important; /* ลดความหนาของกล่อง */
+}
+
+/* เพิ่มเติม: ปรับขนาดตัวอักษรในกล่องบนให้เล็กลงหน่อย จะได้ไม่เบียด */
+.slide:nth-child(7) .stat-val {
+    font-size: 1.8rem !important; /* ลดขนาดตัวเลข/หัวข้อในกล่องลงมาเล็กน้อย */
+}
+.slide:nth-child(7) .stat-desc {
+    font-size: 0.7rem !important; /* ปรับคำอธิบายให้กระชับ */
+}
+/* =======================================================
+   ปรับแต่งขนาดและช่องไฟเจาะจงรายหน้า (สไลด์ 3, 4, 7, 9)
+   ======================================================= */
+
+/* --- สไลด์ที่ 3: หน้าหัวข้อการนำเสนอ (Agenda) --- */
+.agenda-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px !important; /* ลดช่องว่างลงเล็กน้อย */
+    align-items: flex-start !important;
+}
+.agenda-item {
+    padding: 10px 14px !important; /* กระชับกล่องให้ผอมลง */
+}
+.agenda-preview-panel {
+    height: 340px !important;
+}
+
+/* --- สไลด์ที่ 4: หน้าการวิเคราะห์ปัญหา (Problem) --- */
+.problem-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 24px !important;
+    align-items: flex-start !important; /* จัด Layout เริ่มจากด้านบน */
+}
+.problem-item {
+    padding: 14px 18px !important; /* ลดความหนาของกล่องปัญหา */
+}
+.problem-illustration-wrap {
+    height: 350px !important; /* บีบขนาดรูปภาพฝั่งขวาไม่ให้สูงเกินไปจนดันเนื้อหา */
+}
+
+/* --- สไลด์ที่ 7: หน้าผลสัมฤทธิ์และตัวชี้วัด (KPI) --- */
+.stats-grid {
+    gap: 16px !important; /* กระชับระยะห่างของกล่องสี่เหลี่ยมด้านบน */
+}
+.stat-card {
+    padding: 10px 12px !important; /* ลด padding เพื่อลดความหนาของกล่อง Tier, คำถาม */
+}
+.stat-val {
+    font-size: 2.2rem !important; /* ลดขนาดตัวเลขลงเล็กน้อยเพื่อให้สมดุลกับกล่องที่กระชับขึ้น */
+}
+.kpi-table th, .kpi-table td {
+    padding: 6px 12px !important; /* ลด Padding ในตารางลง ตัวอักษรและตารางด้านล่างจะไม่ดันกล่องบน */
+}
+
+/* --- สไลด์ที่ 9: หน้าความยั่งยืนและการขยายผล --- */
+.sustain-layout {
+    gap: 24px !important;
+}
+.sustain-pillar-list {
+    gap: 12px !important; /* ขยับกล่องฝั่งซ้ายให้กระชับขึ้น */
+}
+.sustain-pillar {
+    background: rgba(255, 255, 255, 0.01);
+    padding: 8px 12px;
+    border-radius: 8px;
+}
