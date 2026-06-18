@@ -1518,8 +1518,8 @@ body {
 }
 
 .credits-card {
-    padding: 24px;
-    border-radius: 16px;
+    padding: 40px;
+    border-radius: 25px;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     width: 100%;
@@ -1527,14 +1527,14 @@ body {
 }
 
 .credits-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: white;
     margin-bottom: 4px;
 }
 
 .credits-dept {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-muted);
     line-height: 1.4;
 }
@@ -1556,8 +1556,8 @@ body {
 }
 
 .typing-dot {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background: var(--color-primary);
     border-radius: 50%;
     animation: typing 1.4s infinite;
