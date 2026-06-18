@@ -1424,7 +1424,7 @@ body {
 }
 
 .roadmap-phase {
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--color-primary);
     text-transform: uppercase;
@@ -1459,7 +1459,7 @@ body {
 /* Slide 10 - Summary slide */
 .summary-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 1.2fr;
     gap: 40px;
     width: 100%;
     align-items: center;
@@ -1527,7 +1527,7 @@ body {
 }
 
 .credits-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: white;
     margin-bottom: 4px;
@@ -1540,7 +1540,7 @@ body {
 }
 
 .credits-org {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--color-primary);
     margin-top: 6px;
