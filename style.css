@@ -1303,7 +1303,7 @@ body {
 }
 
 .case-badge {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
     background: rgba(255,255,255,0.05);
@@ -1424,7 +1424,7 @@ body {
 }
 
 .roadmap-phase {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--color-primary);
     text-transform: uppercase;
@@ -1432,7 +1432,7 @@ body {
 }
 
 .roadmap-title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
     color: white;
     margin-top: 2px;
@@ -1527,7 +1527,7 @@ body {
 }
 
 .credits-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: white;
     margin-bottom: 4px;
