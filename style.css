@@ -414,7 +414,7 @@ body {
 }
 
 .subtitle-eng {
-    font-size: 2.0rem;
+    font-size: 1.5rem;
     color: var(--text-muted);
     font-style: italic;
 }
@@ -455,7 +455,7 @@ body {
 }
 
 .presenter-info p {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     color: var(--text-muted);
     margin-top: 2px;
 }
@@ -536,7 +536,7 @@ body {
 }
 
 .concept-card h3 {
-    font-size: 2.3rem;
+    font-size: 2.0rem;
     font-family: var(--font-heading);
     color: #ffffff;
 }
@@ -699,7 +699,7 @@ body {
 }
 
 .problem-title {
-    font-size: 2.0rem;
+    font-size: 1.75rem;
     font-weight: 700;
     color: #ffffff;
 }
@@ -757,7 +757,7 @@ body {
 }
 
 .impact-badge .val {
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--color-danger);
     margin-top: 2px;
