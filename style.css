@@ -89,7 +89,7 @@ body {
     box-shadow: var(--shadow-cyan);
     font-weight: 800;
     color: #fff;
-    font-size: 2rem;
+    font-size: 3rem;
     font-family: var(--font-heading);
 }
 
@@ -1527,7 +1527,7 @@ body {
 }
 
 .credits-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: white;
     margin-bottom: 4px;
