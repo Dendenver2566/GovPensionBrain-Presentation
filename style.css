@@ -355,7 +355,7 @@ body {
 
 .slide-counter {
     font-family: var(--font-heading);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-muted);
 }
@@ -384,7 +384,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -407,14 +407,14 @@ body {
 }
 
 .subtitle-thai {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: #e2e8f0;
     font-weight: 500;
     line-height: 1.5;
 }
 
 .subtitle-eng {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--text-muted);
     font-style: italic;
 }
@@ -455,7 +455,7 @@ body {
 }
 
 .presenter-info p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--text-muted);
     margin-top: 2px;
 }
@@ -596,7 +596,7 @@ body {
 }
 
 .agenda-info h3 {
-    font-size: 2.0rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: var(--text-main);
     transition: var(--transition-fast);
@@ -939,12 +939,20 @@ body {
     background: transparent;
     border: 1px solid var(--border-color);
     color: var(--text-main);
-    padding: 12px 32px;
+    padding: 4px 16px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 600;
     transition: var(--transition-fast);
+    min-width: 200px;            /* กำหนดความกว้างขั้นต่ำ */
+    min-height: 80px;            /* กำหนดความสูงขั้นต่ำ ให้รับ 2 บรรทัด */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;         /* อนุญาตให้ข้อความตัดบรรทัดได้ */
+    line-height: 1.6;            /* ระยะห่างระหว่างบรรทัด */   
 }
 
 .graph-toggle-btn:hover {
@@ -976,7 +984,7 @@ body {
 }
 
 .graph-detail-desc {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-muted);
     line-height: 1.6;
 }
