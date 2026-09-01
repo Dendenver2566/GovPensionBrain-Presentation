@@ -14,6 +14,75 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoPlayInterval = null;
     let isAutoPlaying = false;
     
+    // --- Background Music Manager ---
+    const bgMusic = document.getElementById('bgMusic');
+    const btnMusicToggle = document.getElementById('btnMusicToggle');
+    let isMusicUserMuted = false; // User manually muted
+    
+    bgMusic.volume = 0.35; // Set comfortable background volume
+    
+    function shouldPlayMusic(slideIndex) {
+        return slideIndex === 0 || slideIndex === 9; // Page 1 and Page 10
+    }
+    
+    function fadeInMusic() {
+        if (isMusicUserMuted) return;
+        bgMusic.volume = 0;
+        bgMusic.play().then(() => {
+            // Smooth fade-in
+            let vol = 0;
+            const fadeTimer = setInterval(() => {
+                vol += 0.02;
+                if (vol >= 0.35) {
+                    vol = 0.35;
+                    clearInterval(fadeTimer);
+                }
+                bgMusic.volume = vol;
+            }, 40);
+            updateMusicIcon(true);
+        }).catch(err => {
+            console.log('Music autoplay blocked by browser:', err.message);
+        });
+    }
+    
+    function fadeOutMusic() {
+        if (bgMusic.paused) return;
+        let vol = bgMusic.volume;
+        const fadeTimer = setInterval(() => {
+            vol -= 0.02;
+            if (vol <= 0) {
+                vol = 0;
+                bgMusic.pause();
+                clearInterval(fadeTimer);
+            }
+            bgMusic.volume = vol;
+        }, 40);
+        updateMusicIcon(false);
+    }
+    
+    function updateMusicIcon(isPlaying) {
+        if (isPlaying && !isMusicUserMuted) {
+            btnMusicToggle.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+            btnMusicToggle.classList.add('music-playing');
+        } else {
+            btnMusicToggle.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+            btnMusicToggle.classList.remove('music-playing');
+        }
+    }
+    
+    // Music toggle button
+    btnMusicToggle.addEventListener('click', () => {
+        if (bgMusic.paused || isMusicUserMuted) {
+            isMusicUserMuted = false;
+            if (shouldPlayMusic(currentSlide)) {
+                fadeInMusic();
+            }
+        } else {
+            isMusicUserMuted = true;
+            fadeOutMusic();
+        }
+    });
+    
     function showSlide(index, skipTransition = false) {
         if (index < 0 || index >= slides.length) return;
         
@@ -143,6 +212,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Slide Entering Trigger Hooks ---
     function handleSlideEnter(slideIndex) {
+        // Background music control
+        if (shouldPlayMusic(slideIndex)) {
+            fadeInMusic();
+        } else {
+            fadeOutMusic();
+        }
+        
         if (slideIndex === 5) {
             // Re-init canvas nodes simulation when entering Slide 6
             initNetworkGraph();
