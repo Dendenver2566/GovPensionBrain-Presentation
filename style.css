@@ -2485,3 +2485,46 @@ button,
         scroll-behavior: auto !important;
     }
 }
+
+/* --- Music Toggle Button --- */
+.music-btn {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.music-btn.music-playing {
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: var(--shadow-cyan) !important;
+}
+
+.music-btn.music-playing::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 10px;
+    border: 1px solid var(--color-primary);
+    animation: music-pulse 1.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes music-pulse {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.08); }
+}
+
+/* --- Brain AI Logo Animation --- */
+.logo-icon i {
+    animation: brain-glow 3s ease-in-out infinite;
+}
+
+@keyframes brain-glow {
+    0%, 100% { 
+        text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+        filter: drop-shadow(0 0 3px rgba(0, 240, 255, 0.2));
+    }
+    50% { 
+        text-shadow: 0 0 16px rgba(0, 240, 255, 0.7), 0 0 30px rgba(147, 51, 234, 0.4);
+        filter: drop-shadow(0 0 8px rgba(147, 51, 234, 0.4));
+    }
+}
