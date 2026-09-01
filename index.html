@@ -14,7 +14,7 @@
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="logo-section">
-                <div class="logo-icon">💡</div>
+                <div class="logo-icon"><i class="fa-solid fa-brain"></i></div>
                 <div class="logo-text">
                     <h1>GovPension Brain</h1>
                     <span>KM Innovation</span>
@@ -621,6 +621,7 @@
                 </div>
                 
                 <div class="control-group-right">
+                    <button class="control-btn music-btn" id="btnMusicToggle" title="เปิด/ปิดเพลงประกอบ"><i class="fa-solid fa-volume-xmark"></i></button>
                     <button class="present-mode-btn" id="btnFullscreen"><i class="fa-solid fa-expand"></i> นำเสนอ</button>
                     <button class="control-btn" id="btnAutoPlay"><i class="fa-solid fa-play"></i></button>
                     <button class="control-btn" id="btnNext"><i class="fa-solid fa-chevron-right"></i></button>
@@ -628,6 +629,11 @@
             </footer>
         </main>
     </div>
+
+    <!-- Background Music for Slide 1 & 10 -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="assets/เพลงเชียร์ กงบ..mp3" type="audio/mpeg">
+    </audio>
     
     <script src="script.js"></script>
 </body>
